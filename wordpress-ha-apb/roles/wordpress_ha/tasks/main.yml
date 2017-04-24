@@ -8,7 +8,7 @@
   k8s_v1_persistent_volume_claim:
     name: '{{ item }}'
     namespace: '{{ project_name }}'
-    state: present
+    state: '{{ state }}'
     access_modes:
       - ReadWriteMany
     resources_requests:
@@ -22,7 +22,7 @@
   k8s_v1_service:
     name: etcd
     namespace: '{{ project_name }}'
-    state: present
+    state: '{{ state }}'
     selector:
       app: etcd
     ports:
@@ -43,7 +43,7 @@
   k8s_v1_pod:
     name: '{{ item }}'
     namespace: '{{ project_name }}'
-    state: present
+    state: '{{ state }}'
     labels:
       app: etcd
       etcd_node: '{{ item }}'
@@ -89,6 +89,7 @@
 - name: etcd services
   k8s_v1_service:
     name: '{{ item }}'
+    state: '{{ state }}'
     namespace: '{{ project_name }}'
     labels:
       etcd_node: '{{ item }}'
@@ -136,6 +137,7 @@
     name: mysql
     labels:
       name: mysql
+    state: '{{ state }}'
     namespace: '{{ project_name }}'
     service_name: mysql
     replicas: '{{ database_replicas }}'
@@ -173,7 +175,7 @@
   k8s_v1_persistent_volume_claim:
     name: wordpress-1
     namespace: '{{ project_name }}'
-    state: present
+    state: '{{ state }}'
     access_modes:
       - ReadWriteMany
     resources_requests:
@@ -186,7 +188,7 @@
     labels:
       name: wordpress
     namespace: '{{ project_name }}'
-    state: present
+    state: '{{ state }}'
     selector:
       name: wordpress
     type: NodePort

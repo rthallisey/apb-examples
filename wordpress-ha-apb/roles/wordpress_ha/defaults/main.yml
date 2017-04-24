@@ -9,3 +9,4 @@ discovery_service: etcd:2379
 min_wordpress_replicas: 5
 max_wordpress_replicas: 10
 database_replicas: 3
+state: present
