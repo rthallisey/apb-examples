@@ -23,11 +23,11 @@
     selector:
       app: postgresql-apb
       service: postgresql
-  ports:
-  - name: port-5432
-    port: 5432
-    protocol: TCP
-    target_port: 5432
+    ports:
+    - name: port-5432
+      port: 5432
+      protocol: TCP
+      target_port: 5432
 
 - name: create deployment config
   openshift_v1_deployment_config:
